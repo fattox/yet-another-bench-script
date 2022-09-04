@@ -725,24 +725,35 @@ if [ -z "$SKIP_IPERF" ]; then
 	#   4. location and advertised speed link of the iperf server
 	#   5. network modes supported by the iperf server (IPv4 = IPv4-only, IPv4|IPv6 = IPv4 + IPv6, etc.)
 	IPERF_LOCS=( \
-		"lon.speedtest.clouvider.net" "5200-5209" "Clouvider" "London, UK (10G)" "IPv4|IPv6" \
-		"ping.online.net" "5200-5209" "Online.net" "Paris, FR (10G)" "IPv4" \
-		"ping6.online.net" "5200-5209" "Online.net" "Paris, FR (10G)" "IPv6" \
-		"speedtest-nl-oum.hybula.net" "5201-5206" "Hybula" "The Netherlands (40G)" "IPv4|IPv6" \
-		"speedtest.uztelecom.uz" "5200-5207" "Uztelecom" "Tashkent, UZ (10G)" "IPv4|IPv6" \
-		"nyc.speedtest.clouvider.net" "5200-5209" "Clouvider" "NYC, NY, US (10G)" "IPv4|IPv6" \
-		"dal.speedtest.clouvider.net" "5200-5209" "Clouvider" "Dallas, TX, US (10G)" "IPv4|IPv6" \
-		"la.speedtest.clouvider.net" "5200-5209" "Clouvider" "Los Angeles, CA, US (10G)" "IPv4|IPv6" \
+		"speedtest.wtnet.de" "5200-5209" "Wilhelm.tel" "Hamburg, Germany (40G)" "IPv4|IPv6" \
+		"iperf.par2.as49434.net" "9200-9240" "Harmony Hosting" "Paris, France (40G)" "IPv4|IPv6" \
+		"bordeaux.testdebit.info" "9200-9240" "Bouygues Telecom" "Bordeaux, France (10G)" "IPv4|IPv6" \
+		"speedtest.serverius.net" "5002-5002" "Serverius" "Dronten, Netherlands (10G)" "IPv4|IPv6" \
+		"iperf.he.net" "5201-5201" "Hurricane" "California, USA" "IPv4|IPv6" \
+		"iperf.biznetnetworks.com" "5201-5203" "Biznet" "Jakarta, Indonesia" "IPv4|IPv6" \
+		"iperf.eenet.ee" "5201-5201" "EENet" "Tallinn, Estonia" "IPv4|IPv6" \
+		#"lon.speedtest.clouvider.net" "5200-5209" "Clouvider" "London, UK (10G)" "IPv4|IPv6" \
+		#"ping.online.net" "5200-5209" "Online.net" "Paris, FR (10G)" "IPv4" \
+		#"ping6.online.net" "5200-5209" "Online.net" "Paris, FR (10G)" "IPv6" \
+		#"speedtest-nl-oum.hybula.net" "5201-5206" "Hybula" "The Netherlands (40G)" "IPv4|IPv6" \
+		#"speedtest.uztelecom.uz" "5200-5207" "Uztelecom" "Tashkent, UZ (10G)" "IPv4|IPv6" \
+		#"nyc.speedtest.clouvider.net" "5200-5209" "Clouvider" "NYC, NY, US (10G)" "IPv4|IPv6" \
+		#"dal.speedtest.clouvider.net" "5200-5209" "Clouvider" "Dallas, TX, US (10G)" "IPv4|IPv6" \
+		#"la.speedtest.clouvider.net" "5200-5209" "Clouvider" "Los Angeles, CA, US (10G)" "IPv4|IPv6" \
 	)
 
 	# if the "REDUCE_NET" flag is activated, then do a shorter iperf test with only three locations
 	# (Clouvider London, Clouvider NYC, and Online.net France)
 	if [ ! -z "$REDUCE_NET" ]; then
 		IPERF_LOCS=( \
-			"lon.speedtest.clouvider.net" "5200-5209" "Clouvider" "London, UK (10G)" "IPv4|IPv6" \
-			"ping.online.net" "5200-5209" "Online.net" "Paris, FR (10G)" "IPv4" \
-			"ping6.online.net" "5200-5209" "Online.net" "Paris, FR (10G)" "IPv6" \
-			"nyc.speedtest.clouvider.net" "5200-5209" "Clouvider" "NYC, NY, US (10G)" "IPv4|IPv6" \
+			"speedtest.wtnet.de" "5200-5209" "Wilhelm.tel" "Hamburg, Germany (40G)" "IPv4|IPv6" \
+			"iperf.par2.as49434.net" "9200-9240" "Harmony Hosting" "Paris, France (40G)" "IPv4|IPv6" \
+			"iperf.he.net" "5201-5201" "Hurricane" "California, USA" "IPv4|IPv6" \
+			"iperf.biznetnetworks.com" "5201-5203" "Biznet" "Jakarta, Indonesia" "IPv4|IPv6" \
+			#"lon.speedtest.clouvider.net" "5200-5209" "Clouvider" "London, UK (10G)" "IPv4|IPv6" \
+			#"ping.online.net" "5200-5209" "Online.net" "Paris, FR (10G)" "IPv4" \
+			#"ping6.online.net" "5200-5209" "Online.net" "Paris, FR (10G)" "IPv6" \
+			#"nyc.speedtest.clouvider.net" "5200-5209" "Clouvider" "NYC, NY, US (10G)" "IPv4|IPv6" \
 		)
 	fi
 	
