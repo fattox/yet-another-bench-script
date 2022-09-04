@@ -665,8 +665,8 @@ function launch_iperf {
 	echo -e
 	echo -e "iperf3 Network Speed Tests ($MODE):"
 	echo -e "---------------------------------"
-	printf "%-15s | %-25s | %-15s | %-15s\n" "Provider" "Location (Link)" "Send Speed" "Recv Speed"
-	printf "%-15s | %-25s | %-15s | %-15s\n"
+	printf "%-20s | %-30s | %-15s | %-15s\n" "Provider" "Location (Link)" "Send Speed" "Recv Speed"
+	printf "%-20s | %-30s | %-15s | %-15s\n"
 	
 	# loop through iperf locations array to run iperf test using each public iperf server
 	for (( i = 0; i < IPERF_LOCS_NUM; i++ )); do
@@ -683,7 +683,7 @@ function launch_iperf {
 			[[ -z $IPERF_SENDRESULT_VAL || "$IPERF_SENDRESULT_VAL" == *"0.00"* ]] && IPERF_SENDRESULT_VAL="busy" && IPERF_SENDRESULT_UNIT=""
 			[[ -z $IPERF_RECVRESULT_VAL || "$IPERF_RECVRESULT_VAL" == *"0.00"* ]] && IPERF_RECVRESULT_VAL="busy" && IPERF_RECVRESULT_UNIT=""
 			# print the speed results for the iperf location currently being evaluated
-			printf "%-15s | %-25s | %-15s | %-15s\n" "${IPERF_LOCS[i*5+2]}" "${IPERF_LOCS[i*5+3]}" "$IPERF_SENDRESULT_VAL $IPERF_SENDRESULT_UNIT" "$IPERF_RECVRESULT_VAL $IPERF_RECVRESULT_UNIT"
+			printf "%-20s | %-30s | %-15s | %-15s\n" "${IPERF_LOCS[i*5+2]}" "${IPERF_LOCS[i*5+3]}" "$IPERF_SENDRESULT_VAL $IPERF_SENDRESULT_UNIT" "$IPERF_RECVRESULT_VAL $IPERF_RECVRESULT_UNIT"
 			if [ ! -z $JSON ]; then
 				JSON_RESULT+='{"mode":"'$MODE'","provider":"'${IPERF_LOCS[i*5+2]}'","loc":"'${IPERF_LOCS[i*5+3]}
 				JSON_RESULT+='","send":"'$IPERF_SENDRESULT_VAL' '$IPERF_SENDRESULT_UNIT'","recv":"'$IPERF_RECVRESULT_VAL' '$IPERF_RECVRESULT_UNIT'"},'
@@ -725,13 +725,22 @@ if [ -z "$SKIP_IPERF" ]; then
 	#   4. location and advertised speed link of the iperf server
 	#   5. network modes supported by the iperf server (IPv4 = IPv4-only, IPv4|IPv6 = IPv4 + IPv6, etc.)
 	IPERF_LOCS=( \
-		"speedtest.wtnet.de" "5200-5209" "Wilhelm.tel" "Hamburg, Germany (40G)" "IPv4|IPv6" \
-		"iperf.par2.as49434.net" "9200-9240" "Harmony Hosting" "Paris, France (40G)" "IPv4|IPv6" \
-		"bordeaux.testdebit.info" "9200-9240" "Bouygues Telecom" "Bordeaux, France (10G)" "IPv4|IPv6" \
-		"speedtest.serverius.net" "5002-5002" "Serverius" "Dronten, Netherlands (10G)" "IPv4|IPv6" \
-		"iperf.he.net" "5201-5201" "Hurricane" "California, USA" "IPv4|IPv6" \
-		"iperf.biznetnetworks.com" "5201-5203" "Biznet" "Jakarta, Indonesia" "IPv4|IPv6" \
-		"iperf.eenet.ee" "5201-5201" "EENet" "Tallinn, Estonia" "IPv4|IPv6" \
+		"fra.speedtest.clouvider.net" "5200-5200" "Clouvider" "Frankfurt, Germany (10G)" "IPv4|IPv6" \
+		"lg.ip-projects.de" "5201-5201" "IP Projects" "Frankfurt, Germany (??G)" "IPv4|IPv6" \
+		"iperf3.privatelayer.com" "5201-5201" "Private Layer" "Zurich, Switzerland (40G)" "IPv4|IPv6" \
+		"aix-marseille.testdebit.info" "9240-9240" "Bouygues Telecom" "Marseille, France (10G)" "IPv4|IPv6" \
+		"lg.terrahost.com" "9200-9200" "Terrahost" "Sandefjord, Norway (10G)" "IPv4|IPv6" \
+		"speedtest.lv.buyvm.net" "5201-5201" "BuyVM" "Las Vegas, USA (1G)" "IPv4|IPv6" \
+		"speedtest.iveloz.net.br" "5201-5209" "Iveloz" "Sao Paolo, Brazil (2G)" "IPv4|IPv6" \
+		"server-18999.prod.hosts.ooklaserver.net" "5201-5201" "Ookla" "Johannesburg, SA (??G)" "IPv4|IPv6" \
+		# Others (Busy...)
+		#"iperf.par2.as49434.net" "9200-9240" "Harmony Hosting" "Paris, France (40G)" "IPv4|IPv6" \
+		#"bordeaux.testdebit.info" "9200-9240" "Bouygues Telecom" "Bordeaux, France (10G)" "IPv4|IPv6" \
+		#"speedtest.serverius.net" "5002-5002" "Serverius" "Dronten, Netherlands (10G)" "IPv4|IPv6" \
+		#"iperf.he.net" "5201-5201" "Hurricane" "California, USA" "IPv4|IPv6" \
+		#"iperf.biznetnetworks.com" "5201-5203" "Biznet" "Jakarta, Indonesia" "IPv4|IPv6" \
+		#"iperf.eenet.ee" "5201-5201" "EENet" "Tallinn, Estonia" "IPv4|IPv6" \
+		# Original targets
 		#"lon.speedtest.clouvider.net" "5200-5209" "Clouvider" "London, UK (10G)" "IPv4|IPv6" \
 		#"ping.online.net" "5200-5209" "Online.net" "Paris, FR (10G)" "IPv4" \
 		#"ping6.online.net" "5200-5209" "Online.net" "Paris, FR (10G)" "IPv6" \
@@ -750,6 +759,7 @@ if [ -z "$SKIP_IPERF" ]; then
 			"iperf.par2.as49434.net" "9200-9240" "Harmony Hosting" "Paris, France (40G)" "IPv4|IPv6" \
 			"iperf.he.net" "5201-5201" "Hurricane" "California, USA" "IPv4|IPv6" \
 			"iperf.biznetnetworks.com" "5201-5203" "Biznet" "Jakarta, Indonesia" "IPv4|IPv6" \
+			# Original targets
 			#"lon.speedtest.clouvider.net" "5200-5209" "Clouvider" "London, UK (10G)" "IPv4|IPv6" \
 			#"ping.online.net" "5200-5209" "Online.net" "Paris, FR (10G)" "IPv4" \
 			#"ping6.online.net" "5200-5209" "Online.net" "Paris, FR (10G)" "IPv6" \
