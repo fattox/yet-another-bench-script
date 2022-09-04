@@ -352,7 +352,7 @@ function disk_test {
 	if [[ "$ARCH" = "aarch64" || "$ARCH" = "arm" ]]; then
 		FIO_SIZE=512M
 	else
-		FIO_SIZE=5G
+		FIO_SIZE=2G
 	fi
 
 	# run a quick test to generate the fio test file to be used by the actual tests
