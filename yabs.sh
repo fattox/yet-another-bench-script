@@ -367,7 +367,7 @@ function disk_test {
 	for BS in "${BLOCK_SIZES[@]}"; do
 		# run rand read/write mixed fio test with block size = $BS
 		echo -en "Running fio random mixed R+W disk test with $BS block size..."
-		DISK_TEST=$(timeout 35 $FIO_CMD --name=rand_rw_$BS --ioengine=libaio --rw=randrw --bs=$BS --iodepth=64 --numjobs=2 --size=$FIO_SIZE --runtime=60 --startdelay=3 --ramp_time=3 --gtod_reduce=1 --direct=1 --filename=$DISK_PATH/test.fio --minimal --rwmixread=50 --group_reporting --invalidate=1 --randrepeat=0 --do_verify=0 --verify_fatal=0 2> /dev/null | grep rand_rw_$BS)
+		DISK_TEST=$(timeout 35 $FIO_CMD --name=rand_rw_$BS --ioengine=libaio --rw=randrw --bs=$BS --iodepth=64 --numjobs=2 --size=$FIO_SIZE --runtime=60 --startdelay=3 --ramp_time=3 --gtod_reduce=1 --direct=1 --filename=$DISK_PATH/test.fio --minimal --rwmixread=50 --group_reporting --invalidate=1 --randrepeat=0 --norandommap --do_verify=0 --verify_fatal=0 2> /dev/null | grep rand_rw_$BS)
 		DISK_IOPS_R=$(echo $DISK_TEST | awk -F';' '{print $8}')
 		DISK_IOPS_W=$(echo $DISK_TEST | awk -F';' '{print $49}')
 		DISK_IOPS=$(awk -v a="$DISK_IOPS_R" -v b="$DISK_IOPS_W" 'BEGIN { print a + b }')
