@@ -361,7 +361,7 @@ function disk_test {
 	echo -en "\r\033[0K"
 
 	# get array of block sizes to evaluate
-	BLOCK_SIZES=("$@")
+	BLOCK_SIZES=( "4k" "8k" "16k" "32k" "64k" "128k" "512k" "1m" )
 
 	for BS in "${BLOCK_SIZES[@]}"; do
 		# run rand read/write mixed fio test with block size = $BS
