@@ -725,20 +725,23 @@ if [ -z "$SKIP_IPERF" ]; then
 	#   4. location and advertised speed link of the iperf server
 	#   5. network modes supported by the iperf server (IPv4 = IPv4-only, IPv4|IPv6 = IPv4 + IPv6, etc.)
 	IPERF_LOCS=( \
+		##### >>> Europe
 		"fra.speedtest.clouvider.net" "5200-5200" "Clouvider (FRA)" "Frankfurt, Germany (10G)" "IPv4|IPv6" \
+		#"iperf3.privatelayer.com" "5201-5201" "Private Layer" "Zurich, Switzerland (40G)" "IPv4|IPv6" \
 		"ping.online.net" "5200-5209" "Online.net" "Paris, France (10G)" "IPv4" \
+		#"iperf.par2.as49434.net" "9200-9240" "Harmony Hosting" "Paris, France (40G)" "IPv4|IPv6" \
+		#"bordeaux.testdebit.info" "9200-9240" "Bouygues Telecom" "Bordeaux, France (10G)" "IPv4|IPv6" \
+		#"aix-marseille.testdebit.info" "9240-9240" "Bouygues Telecom" "Marseille, France (10G)" "IPv4|IPv6" \
+		#"speedtest.serverius.net" "5002-5002" "Serverius" "Dronten, Netherlands (10G)" "IPv4|IPv6" \
+		#"speedtest-nl-oum.hybula.net" "5201-5206" "Hybula" "The Netherlands (40G)" "IPv4|IPv6" \
+		#"lg.terrahost.com" "9200-9200" "Terrahost" "Sandefjord, Norway (10G)" "IPv4|IPv6" \
 		"lon.speedtest.clouvider.net" "5200-5209" "Clouvider (LON)" "London, UK (10G)" "IPv4|IPv6" \
+		##### >>> USA
 		"nyc.speedtest.clouvider.net" "5200-5209" "Clouvider (NY)" "NYC, NY, US (10G)" "IPv4|IPv6" \
-		"dal.speedtest.clouvider.net" "5200-5209" "Clouvider (TX)" "Dallas, TX, US (10G)" "IPv4|IPv6" \
-		"la.speedtest.clouvider.net" "5200-5209" "Clouvider (LA)" "Los Angeles, CA, US (10G)" "IPv4|IPv6" \
+		#"dal.speedtest.clouvider.net" "5200-5209" "Clouvider (TX)" "Dallas, TX, US (10G)" "IPv4|IPv6" \
+		#"la.speedtest.clouvider.net" "5200-5209" "Clouvider (LA)" "Los Angeles, CA, US (10G)" "IPv4|IPv6" \
 		"iperf.he.net" "5201-5201" "Hurricane" "California, USA" "IPv4|IPv6" \
-		"iperf3.privatelayer.com" "5201-5201" "Private Layer" "Zurich, Switzerland (40G)" "IPv4|IPv6" \
-		"iperf.par2.as49434.net" "9200-9240" "Harmony Hosting" "Paris, France (40G)" "IPv4|IPv6" \
-		"bordeaux.testdebit.info" "9200-9240" "Bouygues Telecom" "Bordeaux, France (10G)" "IPv4|IPv6" \
-		"aix-marseille.testdebit.info" "9240-9240" "Bouygues Telecom" "Marseille, France (10G)" "IPv4|IPv6" \
-		"speedtest.serverius.net" "5002-5002" "Serverius" "Dronten, Netherlands (10G)" "IPv4|IPv6" \
-		"speedtest-nl-oum.hybula.net" "5201-5206" "Hybula" "The Netherlands (40G)" "IPv4|IPv6" \
-		"lg.terrahost.com" "9200-9200" "Terrahost" "Sandefjord, Norway (10G)" "IPv4|IPv6" \			
+		##### >>> Other					
 		"speedtest.uztelecom.uz" "5200-5207" "Uztelecom" "Tashkent, UZ (10G)" "IPv4|IPv6" \
 	)
 
@@ -747,7 +750,7 @@ if [ -z "$SKIP_IPERF" ]; then
 	if [ ! -z "$REDUCE_NET" ]; then
 		IPERF_LOCS=( \
 			"fra.speedtest.clouvider.net" "5200-5200" "Clouvider (FRA)" "Frankfurt, Germany (10G)" "IPv4|IPv6" \
-			"ping.online.net" "5200-5209" "Online.net" "Paris, France (10G)" "IPv4" \
+			#"ping.online.net" "5200-5209" "Online.net" "Paris, France (10G)" "IPv4" \
 			"lon.speedtest.clouvider.net" "5200-5209" "Clouvider" "London, UK (10G)" "IPv4|IPv6" \
 			"nyc.speedtest.clouvider.net" "5200-5209" "Clouvider" "NYC, NY, US (10G)" "IPv4|IPv6" \
 		)
