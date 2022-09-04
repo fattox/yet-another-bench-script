@@ -366,7 +366,7 @@ function disk_test {
 	for BS in "${BLOCK_SIZES[@]}"; do
 		# run rand read/write mixed fio test with block size = $BS
 		echo -en "Running fio random mixed R+W disk test with $BS block size..."
-		DISK_TEST=$(timeout 35 $FIO_CMD --name=rand_rw_$BS --ioengine=libaio --rw=randrw --rwmixread=50 --bs=$BS --iodepth=64 --numjobs=2 --size=$FIO_SIZE --runtime=30 --gtod_reduce=1 --direct=1 --filename=$DISK_PATH/test.fio --group_reporting --minimal 2> /dev/null | grep rand_rw_$BS)
+		DISK_TEST=$(timeout 35 $FIO_CMD --name=rand_rw_$BS --ioengine=libaio --rw=randrw --rwmixread=50 --bs=$BS --iodepth=64 --numjobs=2 --size=$FIO_SIZE --runtime=60 ramp_time=5 --gtod_reduce=1 --direct=1 --filename=$DISK_PATH/test.fio --group_reporting --minimal 2> /dev/null | grep rand_rw_$BS)
 		DISK_IOPS_R=$(echo $DISK_TEST | awk -F';' '{print $8}')
 		DISK_IOPS_W=$(echo $DISK_TEST | awk -F';' '{print $49}')
 		DISK_IOPS=$(awk -v a="$DISK_IOPS_R" -v b="$DISK_IOPS_W" 'BEGIN { print a + b }')
@@ -513,7 +513,7 @@ elif [ -z "$SKIP_FIO" ]; then
 		# init global array to store disk performance values
 		declare -a DISK_RESULTS DISK_RESULTS_RAW
 		# disk block sizes to evaluate
-		BLOCK_SIZES=( "4k" "64k" "512k" "1m" )
+		BLOCK_SIZES=( "4k" "8k" "16k" "32k" "64k" "128k" "512k" "1m" )
 
 		# execute disk performance test
 		disk_test "${BLOCK_SIZES[@]}"
